@@ -1,0 +1,18 @@
+---
+import { site } from '../data/site';
+---
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="footer-brand"><span>M</span><strong>MENDONÇA RURAL</strong></a>
+      <p>Serviços técnicos agronômicos remotos, laudos, pareceres, relatórios e ART com escopo claramente definido.</p>
+      <small>Atendimento remoto em todo o Brasil.</small>
+    </div>
+    <div><h3>Navegação</h3><a href="/solucoes">Serviços</a><a href="/calculadoras">Calculadoras</a><a href="/coeficientes">Coeficientes técnicos</a><a href="/downloads">Downloads</a><a href="/orcamento">Solicitar análise</a></div>
+    <div><h3>Contato</h3><a href={`https://wa.me/${site.phoneRaw}`}>{site.phoneDisplay}</a><a href={`mailto:${site.email}`}>{site.email}</a><p>{site.coverage}</p></div>
+  </div>
+  <div class="container footer-bottom"><span>© {new Date().getFullYear()} Mendonça Consultoria Rural.</span><span>Conteúdo técnico e institucional.</span></div>
+</footer>
+<style>
+.site-footer{background:var(--navy);color:#fff;padding:64px 0 24px}.site-footer p,.site-footer small{color:#93a2b7;font-size:.84rem}.site-footer h3{font-size:.72rem;color:#fff;text-transform:uppercase;letter-spacing:.1em;margin-bottom:18px}.site-footer a{display:block;color:#c4cfdb;font-size:.82rem;margin:0 0 10px}.site-footer a:hover{color:#fff}.footer-brand{display:flex!important;align-items:center;gap:10px;color:#fff!important;margin-bottom:18px!important}.footer-brand span{width:30px;height:30px;border-radius:7px;background:#0ba273;display:grid;place-items:center;font-weight:900}.footer-bottom{border-top:1px solid rgba(255,255,255,.09);margin-top:42px;padding-top:20px;display:flex;justify-content:space-between;gap:20px;font-size:.7rem;color:#73839a;text-transform:uppercase;letter-spacing:.06em}@media(max-width:640px){.footer-bottom{flex-direction:column}}
+</style>

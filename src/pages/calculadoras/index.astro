@@ -1,0 +1,4 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'; import { calculators } from '../../data/site';
+---
+<BaseLayout title="Calculadoras agrícolas | Mendonça Consultoria Rural"><section class="page-hero"><div class="container"><span class="eyebrow">Ferramentas</span><h1>Calculadoras agrícolas</h1><p>Área preparada para reunir ferramentas técnicas de apoio ao planejamento rural.</p></div></section><section class="section"><div class="container grid cards-3">{calculators.map(c=><div class="card"><span class="tag">Calculadora</span><h3>{c}</h3><p>A funcionalidade será incorporada gradualmente, mantendo todas as ferramentas dentro do mesmo portal.</p><button class="btn btn-secondary" disabled>Em desenvolvimento</button></div>)}</div></section></BaseLayout>

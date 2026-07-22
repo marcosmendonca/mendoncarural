@@ -1,0 +1,27 @@
+---
+import { icon } from '@fortawesome/fontawesome-svg-core';
+import {
+  faArrowRight, faBars, faXmark, faChevronDown, faCheck, faCreditCard, faLeaf,
+  faFileSignature, faTractor, faMapLocationDot, faSackDollar, faSeedling,
+  faFolderOpen, faCompassDrafting, faRulerCombined, faClipboardCheck, faFileLines,
+  faComments, faShieldHalved, faCircleCheck, faLocationDot, faEnvelope, faPhone,
+  faArrowUpRightFromSquare, faClock, faUserTie, faGlobeAmericas
+} from '@fortawesome/free-solid-svg-icons';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+
+const icons = {
+  'arrow-right': faArrowRight, bars: faBars, xmark: faXmark, 'chevron-down': faChevronDown,
+  check: faCheck, 'credit-card': faCreditCard, leaf: faLeaf, 'file-signature': faFileSignature,
+  tractor: faTractor, 'map-location-dot': faMapLocationDot, 'sack-dollar': faSackDollar,
+  seedling: faSeedling, 'folder-open': faFolderOpen, 'compass-drafting': faCompassDrafting,
+  'ruler-combined': faRulerCombined, 'clipboard-check': faClipboardCheck, 'file-lines': faFileLines,
+  comments: faComments, 'shield-halved': faShieldHalved, 'circle-check': faCircleCheck,
+  'location-dot': faLocationDot, envelope: faEnvelope, phone: faPhone, whatsapp: faWhatsapp,
+  external: faArrowUpRightFromSquare, clock: faClock, 'user-tie': faUserTie,
+  globe: faGlobeAmericas
+};
+const { name, class: className = '', title } = Astro.props;
+const selected = icons[name] || faCircleCheck;
+const html = icon(selected, { title, classes: className ? className.split(' ') : [] }).html.join('');
+---
+<Fragment set:html={html} />

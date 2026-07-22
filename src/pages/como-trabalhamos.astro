@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FAIcon from '../components/FAIcon.astro';
+const steps = [
+  [
+    '01',
+    'Solicitação de atendimento',
+    'O cliente informa sua necessidade por meio do formulário ou pelos canais oficiais de atendimento.'
+  ],
+  [
+    '02',
+    'Análise técnica inicial',
+    'A demanda é analisada para identificar o serviço adequado, os documentos necessários e a viabilidade técnica.'
+  ],
+  [
+    '03',
+    'Proposta e contratação',
+    'Após a definição do escopo, é apresentado o orçamento, prazo de execução e demais condições do serviço.'
+  ],
+  [
+    '04',
+    'Elaboração técnica',
+    'Com a documentação recebida, inicia-se a elaboração do laudo, parecer, relatório ou projeto contratado.'
+  ],
+  [
+    '05',
+    'Entrega e suporte',
+    'Os documentos são entregues em formato digital e o cliente recebe as orientações previstas no escopo contratado.'
+  ]
+];
+---
+<BaseLayout title="Como trabalhamos | Mendonça Consultoria Rural" description="Conheça o processo de atendimento, análise, contratação e entrega dos serviços técnicos.">
+<section class="border-b border-slate-200 bg-[linear-gradient(180deg,#f7faf8_0%,#fff_100%)]"><div class="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28"><span class="text-xs font-black uppercase tracking-[.18em] text-emerald-800">Como trabalhamos</span><div class="mt-5 grid gap-10 lg:grid-cols-[1.15fr_.85fr] lg:items-end"><h1 class="text-4xl font-black leading-[1.04] tracking-[-.045em] text-slate-950 sm:text-5xl lg:text-7xl">Atendimento técnico estruturado para oferecer mais segurança em cada etapa.</h1><p class="text-lg leading-8 text-slate-600">Cada serviço segue um fluxo padronizado, desde a análise inicial até a entrega da documentação técnica, proporcionando transparência, organização e segurança para o cliente.</p></div></div></section>
+<section class="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28"><div class="grid gap-14 lg:grid-cols-[.7fr_1.3fr]"><div class="lg:sticky lg:top-28 lg:self-start"><span class="text-xs font-black uppercase tracking-[.18em] text-emerald-800">Etapas</span><h2 class="mt-4 text-3xl font-black tracking-[-.035em] text-slate-950 lg:text-5xl">Nosso processo de atendimento</h2></div><ol class="divide-y divide-slate-200 border-y border-slate-200">{steps.map(([n,title,text])=><li class="grid gap-4 py-7 sm:grid-cols-[50px_1fr]"><span class="text-xs font-black text-emerald-800">{n}</span><div><h3 class="text-xl font-bold text-slate-950">{title}</h3><p class="mt-2 leading-7 text-slate-600">{text}</p></div></li>)}</ol></div></section>
+<section class="bg-slate-950 text-white"><div class="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-24"><div class="grid gap-14 lg:grid-cols-3"><div><FAIcon name="shield-halved" class="h-6 w-6 text-emerald-400"/><h3 class="mt-5 text-xl font-bold">Escopo definido</h3><p class="mt-3 leading-7 text-slate-400">Cada contratação define exatamente o que será analisado e entregue.</p></div><div><FAIcon name="file-lines" class="h-6 w-6 text-emerald-400"/><h3 class="mt-5 text-xl font-bold">Base documental</h3><p class="mt-3 leading-7 text-slate-400">Dados, declarações e arquivos do cliente formam a base do trabalho.</p></div><div><FAIcon name="comments" class="h-6 w-6 text-emerald-400"/><h3 class="mt-5 text-xl font-bold">Acompanhamento técnico</h3><p class="mt-3 leading-7 text-slate-400">Pendências, limitações e decisões são comunicadas de forma clara.</p></div></div></div></section>
+<section class="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-24"><div class="grid gap-12 lg:grid-cols-[.8fr_1.2fr]"><div><span class="text-xs font-black uppercase tracking-[.18em] text-emerald-800">Limites profissionais</span><h2 class="mt-4 text-3xl font-black tracking-[-.035em] text-slate-950">Compromisso com a responsabilidade técnica</h2></div><div class="space-y-6 text-base leading-7 text-slate-600"><p>
+Todos os serviços são desenvolvidos com base nas informações e documentos fornecidos pelo cliente, respeitando rigorosamente o escopo contratado e a legislação aplicável.
+</p>
+
+<p>
+Quando necessário, os trabalhos são acompanhados da Anotação de Responsabilidade Técnica (ART). Serviços que dependam de vistoria presencial ou levantamentos de campo são previamente avaliados antes da contratação.
+</p><a href="/contato" class="inline-flex items-center gap-2 font-bold text-emerald-800">Iniciar uma solicitação <FAIcon name="arrow-right" class="h-3.5 w-3.5" /></a></div></div></section>
+</BaseLayout>

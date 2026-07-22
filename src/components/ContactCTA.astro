@@ -1,0 +1,5 @@
+---
+import { site } from '../data/site';
+const { title='Precisa de orientação sobre o serviço adequado?', text='Descreva sua necessidade e receba uma orientação inicial sobre escopo, documentos e próximos passos.' } = Astro.props;
+---
+<section class="section cta-section"><div class="container"><div class="cta-panel"><div><span class="eyebrow eyebrow-light">Atendimento nacional</span><h2>{title}</h2><p>{text}</p></div><div class="actions"><a class="btn btn-light" href="/orcamento">Solicitar análise inicial</a><a class="btn btn-outline-light" href={`https://wa.me/${site.phoneRaw}?text=${encodeURIComponent('Olá! Gostaria de falar sobre um serviço técnico agronômico.')}`} target="_blank" rel="noreferrer">Conversar no WhatsApp</a></div></div></div></section>

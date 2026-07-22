@@ -1,0 +1,6 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+import { blogPosts } from '../../data/site';
+---
+<BaseLayout title="Blog técnico rural | Mendonça Consultoria Rural" description="Conteúdo técnico sobre crédito rural, regularização, produção e atendimento agronômico."><section class="page-hero"><div class="container"><span class="eyebrow">Conteúdo técnico</span><h1>Informação clara para decisões mais seguras no campo.</h1><p>Artigos educativos sobre documentação, produção, crédito rural, meio ambiente e gestão da propriedade.</p></div></section><section class="section"><div class="container"><div class="article-grid">{blogPosts.map((post,index)=><article class:list={['article-card',index===0&&'featured']}><div class="article-image"><span>Imagem do artigo</span><small>/public/images/blog/{post.slug}.webp</small></div><div class="article-body"><span class="tag">{post.category}</span><h2>{post.title}</h2><p>{post.excerpt}</p><div class="article-meta"><time>{post.date}</time><span>Leitura em breve</span></div></div></article>)}</div></div></section><ContactCTA title="Precisa de uma análise técnica, não apenas de conteúdo?"/></BaseLayout>

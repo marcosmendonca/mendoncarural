@@ -1,0 +1,6 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'; import { coefficientCategories } from '../../data/site';
+export function getStaticPaths(){return coefficientCategories.map(category=>({params:{slug:category.slug},props:{category}}))}
+const { category }=Astro.props;
+---
+<BaseLayout title={`${category.title} | Coeficientes técnicos`}><section class="page-hero"><div class="container"><span class="eyebrow">Coeficientes técnicos</span><h1>{category.title}</h1><p>Selecione uma atividade para consultar os coeficientes técnicos disponíveis.</p></div></section><section class="section"><div class="container grid cards-3">{category.items.map(item=><div class="card"><span class="tag">Em preparação</span><h3>{item}</h3><p>Estrutura reservada para coeficientes de implantação, manutenção, mão de obra, máquinas, insumos e observações técnicas.</p><button class="btn btn-secondary" disabled>Download em breve</button></div>)}</div></section></BaseLayout>

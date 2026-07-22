@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { services, site } from '../../data/site';
+---
+<BaseLayout title="Solicitar análise inicial | Mendonça Consultoria Rural" description="Envie os dados iniciais da sua demanda e receba orientação sobre o serviço técnico agronômico adequado." noindex={true}>
+<section class="page-hero compact"><div class="container"><Breadcrumbs items={[{label:'Solicitar análise inicial'}]}/><span class="eyebrow">Primeiro contato</span><h1>Conte-nos o que você precisa.</h1><p>Este formulário gera uma mensagem organizada para o WhatsApp. O envio não representa contratação e não cria responsabilidade técnica.</p></div></section>
+<section class="section"><div class="container form-layout"><form id="budget-form" class="request-form"><div class="form-head"><span class="step-badge">01</span><div><h2>Dados do solicitante</h2><p>Preencha apenas as informações necessárias para o contato inicial.</p></div></div><div class="form-grid"><label>Nome completo<input name="nome" required autocomplete="name" placeholder="Seu nome"/></label><label>Telefone/WhatsApp<input name="telefone" required autocomplete="tel" placeholder="(00) 00000-0000"/></label><label>E-mail<input name="email" type="email" autocomplete="email" placeholder="seu@email.com"/></label><label>Município e estado<input name="local" required placeholder="Município - UF"/></label></div><div class="form-head"><span class="step-badge">02</span><div><h2>Demanda técnica</h2><p>Selecione o serviço e descreva a finalidade do documento.</p></div></div><label>Serviço de interesse<select name="servico" required><option value="">Selecione um serviço</option>{services.map(service=><option value={service.slug}>{service.title}</option>)}</select></label><label>Finalidade e contexto da solicitação<textarea name="mensagem" rows="7" required placeholder="Ex.: documento solicitado pelo banco, prazo disponível e breve descrição da propriedade ou atividade."></textarea></label><label class="consent"><input type="checkbox" name="declaracao" required/><span>Declaro que as informações enviadas nesta etapa são verdadeiras e compreendo que o atendimento depende de análise de viabilidade, documentos e definição formal do escopo.</span></label><button class="btn btn-primary btn-wide" type="submit">Continuar no WhatsApp</button><p class="form-disclaimer">Nenhum arquivo é enviado por este formulário. Após o contato inicial, será informado o canal apropriado para documentos.</p></form><aside class="form-aside"><div class="side-card sticky"><span class="eyebrow">Antes de enviar</span><h3>O que acontece depois?</h3><ol><li><span>1</span>Recebemos a mensagem inicial.</li><li><span>2</span>Confirmamos o serviço e o checklist.</li><li><span>3</span>Enviamos escopo, prazo e orçamento.</li><li><span>4</span>O trabalho começa após a contratação.</li></ol><div class="notice"><strong>Importante</strong><p>Não envie senhas, dados bancários ou documentos sensíveis antes de receber a orientação do canal oficial.</p></div></div></aside></div></section>
+<script define:vars={{ phone: site.phoneRaw }}>
+  const form = document.querySelector('#budget-form');
+  const params = new URLSearchParams(window.location.search);
+  const selected = params.get('servico');
+  if (selected && form?.elements?.servico) form.elements.servico.value = selected;
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const select = form.elements.servico;
+    const serviceName = select.options[select.selectedIndex]?.text || data.get('servico');
+    const text = [
+      'Olá! Gostaria de solicitar uma análise inicial.', '',
+      `Nome: ${data.get('nome')}`,
+      `Telefone: ${data.get('telefone')}`,
+      `E-mail: ${data.get('email') || 'Não informado'}`,
+      `Local: ${data.get('local')}`,
+      `Serviço: ${serviceName}`,'',
+      'Descrição:', String(data.get('mensagem'))
+    ].join('\n');
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+  });
+</script>
+</BaseLayout>
