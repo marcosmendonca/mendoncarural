@@ -4,15 +4,34 @@ import { site } from '../data/site';
 <footer class="site-footer">
   <div class="container footer-grid">
     <div>
-      <a href="/" class="footer-brand"><span>M</span><strong>MENDONÇA RURAL</strong></a>
-      <p>Serviços técnicos agronômicos remotos, laudos, pareceres, relatórios e ART com escopo claramente definido.</p>
-      <small>Atendimento remoto em todo o Brasil.</small>
+      <a href="/" class="footer-brand" aria-label={`${site.name} — página inicial`}>
+        <img src="/images/brand/LOGO%20MENDONCA%20RURAL.png" alt={site.name} />
+      </a>
+      <p>Consultoria agronômica para crédito rural, regularização ambiental e fundiária, projetos agropecuários e levantamentos técnicos.</p>
+      <small>{site.coverage}</small>
     </div>
-    <div><h3>Navegação</h3><a href="/solucoes">Serviços</a><a href="/calculadoras">Calculadoras</a><a href="/coeficientes">Coeficientes técnicos</a><a href="/downloads">Downloads</a><a href="/orcamento">Solicitar análise</a></div>
-    <div><h3>Contato</h3><a href={`https://wa.me/${site.phoneRaw}`}>{site.phoneDisplay}</a><a href={`mailto:${site.email}`}>{site.email}</a><p>{site.coverage}</p></div>
+    <div>
+      <h3>Navegação</h3>
+      <a href="/solucoes">Soluções</a>
+      <a href="/como-trabalhamos">Como Trabalhamos</a>
+      <a href="/blog">Blog</a>
+      <a href="/calculadoras">Calculadoras</a>
+      <a href="/coeficientes">Coeficientes técnicos</a>
+      <a href="/downloads">Downloads</a>
+    </div>
+    <div>
+      <h3>Contato</h3>
+      <a href={`https://wa.me/${site.phoneRaw}`} target="_blank" rel="noreferrer">{site.phoneDisplay}</a>
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+      <a href="/contato">Página de contato</a>
+      <a href="/orcamento">Solicitar atendimento</a>
+    </div>
   </div>
-  <div class="container footer-bottom"><span>© {new Date().getFullYear()} Mendonça Consultoria Rural.</span><span>Conteúdo técnico e institucional.</span></div>
+  <div class="container footer-bottom">
+    <span>© {new Date().getFullYear()} Mendonça Consultoria Rural.</span>
+    <span><a href="/politica-de-privacidade">Privacidade</a> · <a href="/termos-de-uso">Termos de uso</a></span>
+  </div>
 </footer>
 <style>
-.site-footer{background:var(--navy);color:#fff;padding:64px 0 24px}.site-footer p,.site-footer small{color:#93a2b7;font-size:.84rem}.site-footer h3{font-size:.72rem;color:#fff;text-transform:uppercase;letter-spacing:.1em;margin-bottom:18px}.site-footer a{display:block;color:#c4cfdb;font-size:.82rem;margin:0 0 10px}.site-footer a:hover{color:#fff}.footer-brand{display:flex!important;align-items:center;gap:10px;color:#fff!important;margin-bottom:18px!important}.footer-brand span{width:30px;height:30px;border-radius:7px;background:#0ba273;display:grid;place-items:center;font-weight:900}.footer-bottom{border-top:1px solid rgba(255,255,255,.09);margin-top:42px;padding-top:20px;display:flex;justify-content:space-between;gap:20px;font-size:.7rem;color:#73839a;text-transform:uppercase;letter-spacing:.06em}@media(max-width:640px){.footer-bottom{flex-direction:column}}
+.site-footer{background:var(--navy);color:#fff;padding:64px 0 24px}.site-footer p,.site-footer small{color:#93a2b7;font-size:.84rem}.site-footer h3{font-size:.72rem;color:#fff;text-transform:uppercase;letter-spacing:.1em;margin-bottom:18px}.site-footer a{display:block;color:#c4cfdb;font-size:.82rem;margin:0 0 10px}.site-footer a:hover{color:#fff}.footer-brand{display:inline-flex!important;align-items:center;margin-bottom:18px!important}.footer-brand img{display:block;width:auto;max-width:220px;height:52px;object-fit:contain;object-position:left center}.footer-bottom{border-top:1px solid rgba(255,255,255,.09);margin-top:42px;padding-top:20px;display:flex;justify-content:space-between;gap:20px;font-size:.7rem;color:#73839a;text-transform:uppercase;letter-spacing:.06em}.footer-bottom span:last-child{display:flex;gap:6px;align-items:center}.footer-bottom a{display:inline;color:#73839a;font-size:inherit;margin:0}.footer-bottom a:hover{color:#fff}@media(max-width:640px){.footer-bottom{flex-direction:column}.footer-brand img{max-width:190px;height:46px}}
 </style>
