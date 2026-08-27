@@ -1,41 +1,14 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-
-<BaseLayout
-title="Página não encontrada"
-description="A página que você procura não existe."
->
-
-<section class="mx-auto max-w-4xl px-5 py-32 text-center">
-
-<span class="text-sm font-black uppercase tracking-[.18em] text-[#1E4D3A]">
-
-Erro 404
-
-</span>
-
-<h1 class="mt-6 text-6xl font-black tracking-[-.05em] text-slate-950">
-
-Página não encontrada
-
-</h1>
-
-<p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-
-A página que você tentou acessar não existe ou foi movida.
-
-</p>
-
-<a
-href="/"
-class="mt-10 inline-flex rounded-xl bg-[#1E4D3A] px-6 py-4 font-bold text-white"
->
-
-Voltar para a página inicial
-
-</a>
-
-</section>
-
+<BaseLayout title="Página não encontrada | Mendonça Consultoria Rural" description="A página que você procura não existe ou foi movida." noindex={true}>
+  <section class="mx-auto max-w-4xl px-5 py-28 text-center lg:py-36">
+    <span class="text-xs font-black uppercase tracking-[.18em] text-emerald-800">Erro 404</span>
+    <h1 class="mt-5 text-4xl font-black tracking-[-.045em] text-slate-950 sm:text-5xl lg:text-6xl">Página não encontrada.</h1>
+    <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600">O endereço informado pode ter sido alterado. Você pode voltar ao início, conhecer nossas soluções ou entrar em contato.</p>
+    <div class="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+      <a href="/" class="inline-flex items-center justify-center rounded-xl bg-emerald-900 px-6 py-3.5 text-sm font-bold text-white">Voltar ao início</a>
+      <a href="/solucoes" class="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-bold text-slate-800">Ver soluções</a>
+    </div>
+  </section>
 </BaseLayout>
