@@ -1,0 +1,21 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+import { site } from '../../data/site';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id.replace(/\.(md|mdx)$/,'') }, props: { post } }));
+}
+const { post } = Astro.props;
+const { Content } = await render(post);
+const slug = post.id.replace(/\.(md|mdx)$/,'');
+const url = new URL(`/blog/${slug}/`, Astro.site || site.url).href;
+const image = post.data.image || site.image;
+const schema = {'@context':'https://schema.org','@type':'Article',headline:post.data.title,description:post.data.description,datePublished:post.data.publishedAt.toISOString(),dateModified:(post.data.updatedAt || post.data.publishedAt).toISOString(),mainEntityOfPage:url,author:{'@type':'Organization',name:post.data.author,url:site.url},publisher:{'@type':'Organization',name:site.name,url:site.url},image:new URL(image, Astro.site || site.url).href,keywords:post.data.keywords.join(', ')};
+const date = post.data.publishedAt.toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
+---
+<BaseLayout title={`${post.data.title} | ${site.shortName}`} description={post.data.description} image={image} schema={schema}>
+<article><header class="border-b border-slate-200 bg-[linear-gradient(180deg,#f7faf8_0%,#fff_100%)]"><div class="mx-auto max-w-4xl px-5 py-16 lg:px-8 lg:py-24"><a href="/blog" class="text-sm font-bold text-emerald-800">← Blog</a><div class="mt-8 text-xs font-black uppercase tracking-[.18em] text-emerald-800">{post.data.category}</div><h1 class="mt-5 text-4xl font-black leading-[1.05] tracking-[-.04em] text-slate-950 sm:text-5xl lg:text-6xl">{post.data.title}</h1><p class="mt-6 text-xl leading-8 text-slate-600">{post.data.description}</p><div class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-500"><span>{post.data.author}</span><time datetime={post.data.publishedAt.toISOString()}>{date}</time>{post.data.updatedAt && <span>Atualizado</span>}</div></div></header><div class="mx-auto max-w-4xl px-5 py-14 lg:px-8 lg:py-20"><div class="prose prose-slate max-w-none prose-headings:font-black prose-headings:tracking-[-.025em] prose-a:text-emerald-800"><Content /></div>{post.data.relatedService && <div class="mt-14 border-t border-slate-200 pt-8"><a href={`/solucoes/${post.data.relatedService}`} class="font-bold text-emerald-800">Conheça a solução relacionada →</a></div>}</div></article><ContactCTA title="Tem uma demanda relacionada a este assunto?"/>
+</BaseLayout>
