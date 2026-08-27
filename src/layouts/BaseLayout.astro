@@ -3,13 +3,21 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 import { site } from '../data/site';
-const defaultSocialImage = '/images/brand/LOGO%20MENDONCA%20RURAL.png';
+const defaultSocialImage = site.image || '/images/brand/LOGO%20MENDONCA%20RURAL.png';
 const { title = site.name, description = site.description, image = defaultSocialImage, noindex = false, schema } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site || site.url);
 const absoluteImage = new URL(image, Astro.site || site.url);
 const organizationSchema = {
-  '@context':'https://schema.org', '@type':'ProfessionalService', name:site.name, url:site.url,
-  description:site.description, email:site.email, telephone:`+${site.phoneRaw}`,
+  '@context':'https://schema.org',
+  '@type':'ProfessionalService',
+  '@id':`${site.url}/#organization`,
+  name:site.name,
+  url:site.url,
+  description:site.description,
+  email:site.email,
+  telephone:`+${site.phoneRaw}`,
+  logo:new URL('/images/brand/LOGO%20MENDONCA%20RURAL.png', Astro.site || site.url).href,
+  image:absoluteImage.href,
   areaServed:{'@type':'Country',name:'Brasil'}
 };
 ---
@@ -20,12 +28,22 @@ const organizationSchema = {
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>{title}</title>
   <meta name="description" content={description}/>
+  <meta name="robots" content={noindex ? 'noindex,nofollow' : 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'}/>
+  <meta name="googlebot" content={noindex ? 'noindex,nofollow' : 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'}/>
   <link rel="canonical" href={canonical}/>
-  {noindex && <meta name="robots" content="noindex,nofollow"/>}
   <meta name="theme-color" content="#075842"/>
-  <meta property="og:locale" content="pt_BR"/><meta property="og:site_name" content={site.name}/>
-  <meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/><meta property="og:url" content={canonical}/><meta property="og:image" content={absoluteImage}/>
-  <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content={title}/><meta name="twitter:description" content={description}/><meta name="twitter:image" content={absoluteImage}/>
+  <meta property="og:locale" content="pt_BR"/>
+  <meta property="og:site_name" content={site.name}/>
+  <meta property="og:title" content={title}/>
+  <meta property="og:description" content={description}/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content={canonical}/>
+  <meta property="og:image" content={absoluteImage}/>
+  <meta property="og:image:alt" content={`Identidade visual da ${site.name}`}/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content={title}/>
+  <meta name="twitter:description" content={description}/>
+  <meta name="twitter:image" content={absoluteImage}/>
   <link rel="icon" href="/favicon/FAVICON%20MENDONCA%20RURAL.png" type="image/png"/>
   <script type="application/ld+json" set:html={JSON.stringify(schema || organizationSchema)}></script>
 </head>
