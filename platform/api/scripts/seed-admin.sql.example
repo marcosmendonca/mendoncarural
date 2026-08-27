@@ -1,0 +1,15 @@
+-- 1) Gere o hash localmente:
+-- node scripts/create-password-hash.mjs "SUA-SENHA-FORTE"
+-- 2) Substitua PASSWORD_HASH abaixo e ajuste nome/e-mail.
+
+INSERT INTO users (id, email, name, password_hash, status)
+VALUES ('usr_admin_001', 'admin@mendoncarural.com.br', 'Administrador', 'PASSWORD_HASH', 'active');
+
+INSERT INTO organizations (id, name, slug)
+VALUES ('org_mendonca_rural', 'Mendonça Rural', 'mendonca-rural');
+
+INSERT INTO organization_members (id, organization_id, user_id, role)
+VALUES ('mem_admin_001', 'org_mendonca_rural', 'usr_admin_001', 'owner');
+
+INSERT INTO tool_entitlements (id, organization_id, tool_key, enabled)
+VALUES ('ent_compliance_001', 'org_mendonca_rural', 'compliance', 1);
