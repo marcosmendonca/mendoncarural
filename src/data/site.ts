@@ -8,7 +8,7 @@ export const site = {
   phoneRaw: '5527998125081',
   coverage: 'Atendimento técnico em todo o Brasil, com etapas presenciais somente quando indispensáveis ao serviço',
   description: 'Consultoria agronômica em crédito rural, regularização ambiental e fundiária, projetos agropecuários e levantamentos técnicos.',
-  image: '/images/brand/og-cover.jpg'
+  image: '/images/brand/LOGO%20MENDONCA%20RURAL.png'
 };
 
 export type Service = {
