@@ -6,7 +6,7 @@ const mainLinks = [
   ['Soluções','/solucoes'],
   ['Como Trabalhamos','/como-trabalhamos'],
   ['Calculadoras','/calculadoras'],
-  ['Central de Conhecimento','/conhecimento'],
+  ['Blog','/blog'],
   ['Sobre','/sobre'],
   ['Contato','/contato']
 ];
@@ -14,11 +14,7 @@ const mainLinks = [
 <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-xl">
   <div class="mx-auto flex h-[76px] max-w-7xl items-center gap-8 px-5 lg:px-8">
     <a href="/" class="flex min-w-fit items-center gap-3" aria-label={`${site.name} — página inicial`}>
-      <img src="/images/brand/logo-horizontal.svg" alt={site.name} class="hidden h-10 w-auto sm:block" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-      <span class="hidden items-center gap-3" style="display:flex">
-        <span class="grid h-10 w-10 place-items-center rounded-xl bg-emerald-900 text-sm font-black text-white">M</span>
-        <span><strong class="block text-sm font-black tracking-[-.02em] text-slate-950">MENDONÇA</strong><small class="block text-[10px] font-bold tracking-[.16em] text-emerald-800">CONSULTORIA RURAL</small></span>
-      </span>
+      <img src="/images/brand/LOGO%20MENDONCA%20RURAL.png" alt={site.name} class="h-11 w-auto object-contain" />
     </a>
 
     <nav class="hidden flex-1 items-center justify-center gap-1 lg:flex" aria-label="Navegação principal">
@@ -40,15 +36,18 @@ const mainLinks = [
       {mainLinks.slice(1).map(([label,url]) => <a class:list={["rounded-lg px-3 py-2 text-sm font-semibold transition hover:bg-slate-50 hover:text-emerald-800", current===url || current.startsWith(`${url}/`) ? 'text-emerald-800' : 'text-slate-600']} href={url}>{label}</a>)}
     </nav>
 
-    <a class="hidden items-center gap-2 rounded-xl bg-emerald-900 px-4 py-3 text-sm font-bold text-white transition hover:bg-emerald-800 xl:inline-flex" href="/contato">Solicitar atendimento <FAIcon name="arrow-right" class="h-3.5 w-3.5" /></a>
+    <a class="hidden items-center gap-2 rounded-xl bg-emerald-900 px-4 py-3 text-sm font-bold text-white transition hover:bg-emerald-800 xl:inline-flex" href="/orcamento">Solicitar atendimento <FAIcon name="arrow-right" class="h-3.5 w-3.5" /></a>
     <button id="menu-trigger" class="ml-auto grid h-11 w-11 place-items-center rounded-xl border border-slate-200 text-slate-700 lg:hidden" aria-label="Abrir menu" aria-expanded="false"><FAIcon name="bars" class="h-5 w-5" /></button>
   </div>
   <div id="mobile-menu" class="hidden border-t border-slate-200 bg-white px-5 py-5 lg:hidden">
     <nav class="mx-auto grid max-w-7xl gap-1">
       {mainLinks.map(([label,url]) => <a href={url} class="rounded-lg px-3 py-3 text-sm font-bold text-slate-700 hover:bg-slate-50">{label}</a>)}
       <div class="my-2 border-t border-slate-100"></div>
+      <a href="/coeficientes" class="px-3 py-2 text-sm text-slate-500">Coeficientes técnicos</a>
+      <a href="/downloads" class="px-3 py-2 text-sm text-slate-500">Downloads</a>
+      <div class="my-2 border-t border-slate-100"></div>
       {services.map((service)=><a href={`/solucoes/${service.slug}`} class="px-3 py-2 text-sm text-slate-500">{service.shortTitle}</a>)}
-      <a href="/contato" class="mt-3 rounded-xl bg-emerald-900 px-4 py-3 text-center text-sm font-bold text-white">Solicitar atendimento</a>
+      <a href="/orcamento" class="mt-3 rounded-xl bg-emerald-900 px-4 py-3 text-center text-sm font-bold text-white">Solicitar atendimento</a>
     </nav>
   </div>
 </header>
