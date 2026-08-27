@@ -1,0 +1,36 @@
+---
+// Sprint 00: structural shell only.
+// Sprint 01 will protect /app/* server-side and resolve the authenticated identity.
+import { platformTools } from '../../platform/tools';
+---
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Plataforma | Mendonça Rural</title>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p>Mendonça Rural</p>
+        <h1>Plataforma</h1>
+        <p>Fundação da área privada. A autenticação será ativada na Sprint 01.</p>
+      </header>
+
+      <section aria-labelledby="tools-title">
+        <h2 id="tools-title">Ferramentas</h2>
+        <ul>
+          {platformTools.filter((tool) => tool.enabled).map((tool) => (
+            <li>
+              <strong>{tool.name}</strong>
+              {tool.description && <p>{tool.description}</p>}
+              <small>Disponibilidade por organização será validada no servidor.</small>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
