@@ -1,3 +1,16 @@
-Política de Privacidade
-
-Esta página será disponibilizada em breve.
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+<BaseLayout title="Política de Privacidade | Mendonça Consultoria Rural" description="Política de privacidade e tratamento de dados da Mendonça Consultoria Rural.">
+<section class="border-b border-slate-200 bg-slate-50"><div class="mx-auto max-w-4xl px-5 py-20 lg:px-8 lg:py-24"><span class="text-xs font-black uppercase tracking-[.18em] text-emerald-800">Privacidade</span><h1 class="mt-5 text-4xl font-black tracking-[-.04em] text-slate-950 sm:text-5xl">Política de Privacidade</h1><p class="mt-6 text-lg leading-8 text-slate-600">Esta política explica, de forma geral, como as informações fornecidas nos canais da Mendonça Consultoria Rural são utilizadas durante o atendimento.</p></div></section>
+<section class="mx-auto max-w-4xl px-5 py-16 lg:px-8 lg:py-20"><div class="space-y-10 text-base leading-7 text-slate-600">
+<div><h2 class="text-2xl font-black text-slate-950">1. Informações fornecidas pelo usuário</h2><p class="mt-3">Podemos receber dados de contato e informações relacionadas à demanda quando você entra em contato por WhatsApp, e-mail ou utiliza o formulário de análise inicial. O formulário disponível no site prepara uma mensagem para envio pelo WhatsApp e não armazena os dados preenchidos em banco de dados próprio do site.</p></div>
+<div><h2 class="text-2xl font-black text-slate-950">2. Finalidade</h2><p class="mt-3">As informações recebidas são utilizadas para responder solicitações, compreender a demanda, orientar sobre serviços, preparar propostas e executar atividades contratadas quando aplicável.</p></div>
+<div><h2 class="text-2xl font-black text-slate-950">3. Documentos técnicos</h2><p class="mt-3">Quando um atendimento exigir documentos pessoais, rurais, ambientais, cadastrais ou técnicos, o cliente será orientado sobre as informações necessárias para a finalidade específica do serviço.</p></div>
+<div><h2 class="text-2xl font-black text-slate-950">4. Serviços de terceiros</h2><p class="mt-3">Ao utilizar links para WhatsApp, e-mail ou outros serviços externos, o tratamento de dados realizado por essas plataformas também estará sujeito às respectivas políticas e condições de uso.</p></div>
+<div><h2 class="text-2xl font-black text-slate-950">5. Segurança e necessidade</h2><p class="mt-3">Solicitamos que não sejam enviados senhas ou dados bancários desnecessários. Informações e documentos devem ser compartilhados apenas quando relacionados à análise ou execução da demanda.</p></div>
+<div><h2 class="text-2xl font-black text-slate-950">6. Contato</h2><p class="mt-3">Dúvidas relacionadas à privacidade e ao uso das informações podem ser encaminhadas para <a class="font-bold text-emerald-800" href={`mailto:${site.email}`}>{site.email}</a>.</p></div>
+<p class="border-t border-slate-200 pt-8 text-sm text-slate-500">Última atualização: agosto de 2026.</p>
+</div></section>
+</BaseLayout>
