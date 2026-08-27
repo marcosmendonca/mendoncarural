@@ -3,24 +3,43 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { site } from '../data/site';
 ---
-<BaseLayout title="Contato | Mendonça Consultoria Rural" description="Entre em contato com a Mendonça Consultoria Rural para serviços técnicos agronômicos remotos em todo o Brasil."><section class="page-hero compact"><div class="container"><Breadcrumbs items={[{label:'Contato'}]}/><span class="eyebrow">
-Contato
-</span><h1>
-Entre em contato com a Mendonça Consultoria Rural.
-</h1><p>
-Estamos à disposição para esclarecer dúvidas, orientar sobre nossos serviços e realizar a análise inicial da sua demanda técnica.
-</p></div></section><section class="section"><div class="container contact-layout"><div><div class="contact-card"><small>WhatsApp</small><h2>{site.phoneDisplay}</h2><p>
-Canal mais rápido para esclarecimento de dúvidas, envio de informações iniciais e orientações sobre a documentação necessária.
-</p><a class="btn btn-primary" href={`https://wa.me/${site.phoneRaw}`} target="_blank" rel="noreferrer">Abrir WhatsApp</a></div><div class="contact-card"><small>E-mail</small><h2>{site.email}</h2><p>
-Utilize este canal para envio de documentos, comunicações institucionais e assuntos que não exijam atendimento imediato.
-</p><a class="btn btn-secondary" href={`mailto:${site.email}`}>Enviar e-mail</a></div></div><aside class="contact-aside"><span class="eyebrow">
-Abrangência
-</span><h2>
-Atendimento remoto em todo o Brasil.
-</h2><p>
-A maior parte dos serviços é realizada de forma totalmente remota, utilizando formulários padronizados, documentos digitais e informações fornecidas pelo cliente, garantindo agilidade e atendimento em âmbito nacional.
-</p><a class="btn btn-primary" href="/orcamento">Solicitar análise inicial</a><div class="notice"><strong>
-Importante
-</strong><p>
-Todas as informações recebidas são utilizadas exclusivamente para análise técnica da demanda e tratadas com confidencialidade, conforme nossa Política de Privacidade.
-</p></div></aside></div></section></BaseLayout>
+<BaseLayout title="Contato | Mendonça Consultoria Rural" description="Entre em contato com a Mendonça Consultoria Rural para orientação sobre serviços técnicos agronômicos.">
+  <section class="page-hero compact">
+    <div class="container">
+      <Breadcrumbs items={[{label:'Contato'}]}/>
+      <span class="eyebrow">Contato</span>
+      <h1>Entre em contato com a Mendonça Consultoria Rural.</h1>
+      <p>Estamos à disposição para esclarecer dúvidas, orientar sobre os serviços e realizar a análise inicial da sua demanda técnica.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact-layout">
+      <div>
+        <div class="contact-card">
+          <small>WhatsApp</small>
+          <h2>{site.phoneDisplay}</h2>
+          <p>Canal mais rápido para dúvidas, informações iniciais e orientação sobre a documentação necessária.</p>
+          <a class="btn btn-primary" href={`https://wa.me/${site.phoneRaw}?text=${encodeURIComponent('Olá! Gostaria de informações sobre os serviços da Mendonça Consultoria Rural.')}`} target="_blank" rel="noreferrer">Abrir WhatsApp</a>
+        </div>
+        <div class="contact-card">
+          <small>E-mail</small>
+          <h2>{site.email}</h2>
+          <p>Canal para comunicações institucionais e continuidade de atendimentos já iniciados.</p>
+          <a class="btn btn-secondary" href={`mailto:${site.email}`}>Enviar e-mail</a>
+        </div>
+      </div>
+
+      <aside class="contact-aside">
+        <span class="eyebrow">Atendimento</span>
+        <h2>{site.coverage}.</h2>
+        <p>A forma de execução depende da natureza de cada serviço. Demandas que exigem vistoria, medição ou levantamento em campo são avaliadas individualmente antes da contratação.</p>
+        <a class="btn btn-primary" href="/orcamento">Preencher análise inicial</a>
+        <div class="notice">
+          <strong>Importante</strong>
+          <p>O formulário de análise inicial organiza as informações e abre uma conversa no WhatsApp. O preenchimento não representa contratação do serviço.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
