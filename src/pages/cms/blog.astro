@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Editor do Blog | Mendonça Rural" description="Editor interno de conteúdo." noindex={true}>
+  <section class="border-b border-slate-200 bg-slate-50">
+    <div class="mx-auto max-w-7xl px-5 py-12 lg:px-8">
+      <span class="text-xs font-black uppercase tracking-[.18em] text-emerald-800">CMS local</span>
+      <h1 class="mt-3 text-4xl font-black tracking-[-.04em] text-slate-950">Editor do Blog</h1>
+      <p class="mt-4 max-w-3xl leading-7 text-slate-600">Crie o artigo, revise o SEO e salve o arquivo Markdown diretamente na pasta <code>src/content/blog</code> do projeto. Ao publicar e fazer o deploy, a rota entra automaticamente no sitemap.</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 py-10 lg:px-8">
+    <div class="grid gap-8 xl:grid-cols-[1fr_380px]">
+      <form id="cms-form" class="space-y-8">
+        <div class="grid gap-5 rounded-2xl border border-slate-200 bg-white p-6 sm:grid-cols-2">
+          <label class="sm:col-span-2"><span class="mb-2 block text-sm font-bold text-slate-800">Título</span><input id="title" required class="w-full rounded-xl border border-slate-300 px-4 py-3" placeholder="Ex.: Crédito rural: como funciona o custeio agrícola" /></label>
+          <label class="sm:col-span-2"><span class="mb-2 block text-sm font-bold text-slate-800">Slug</span><input id="slug" required class="w-full rounded-xl border border-slate-300 px-4 py-3 font-mono text-sm" placeholder="credito-rural-como-funciona-custeio-agricola" /></label>
+          <label class="sm:col-span-2"><span class="mb-2 block text-sm font-bold text-slate-800">Meta description</span><textarea id="description" required maxlength="170" rows="3" class="w-full rounded-xl border border-slate-300 px-4 py-3"></textarea><small id="description-count" class="mt-1 block text-slate-500">0/170</small></label>
+          <label><span class="mb-2 block text-sm font-bold text-slate-800">Categoria</span><select id="category" class="w-full rounded-xl border border-slate-300 px-4 py-3"><option>Crédito Rural</option><option>Regularização Ambiental</option><option>Regularização Fundiária</option><option>Projetos Agropecuários</option><option>Georreferenciamento</option></select></label>
+          <label><span class="mb-2 block text-sm font-bold text-slate-800">Serviço relacionado</span><select id="relatedService" class="w-full rounded-xl border border-slate-300 px-4 py-3"><option value="">Nenhum</option><option value="credito-rural">Crédito Rural</option><option value="regularizacao-ambiental">Regularização Ambiental</option><option value="regularizacao-fundiaria">Regularização Fundiária</option><option value="projetos-agropecuarios">Projetos Agropecuários</option><option value="georreferenciamento">Georreferenciamento</option></select></label>
+          <label><span class="mb-2 block text-sm font-bold text-slate-800">Autor</span><input id="author" value="Mendonça Consultoria Rural" class="w-full rounded-xl border border-slate-300 px-4 py-3" /></label>
+          <label><span class="mb-2 block text-sm font-bold text-slate-800">Data de publicação</span><input id="publishedAt" type="date" required class="w-full rounded-xl border border-slate-300 px-4 py-3" /></label>
+          <label class="sm:col-span-2"><span class="mb-2 block text-sm font-bold text-slate-800">Palavras-chave</span><input id="keywords" class="w-full rounded-xl border border-slate-300 px-4 py-3" placeholder="crédito rural, custeio agrícola, financiamento rural" /></label>
+          <label class="sm:col-span-2"><span class="mb-2 block text-sm font-bold text-slate-800">Imagem de capa</span><input id="image" class="w-full rounded-xl border border-slate-300 px-4 py-3" placeholder="/images/blog/nome-da-imagem.webp" /></label>
+          <label class="sm:col-span-2"><span class="mb-2 block text-sm font-bold text-slate-800">Texto alternativo da imagem</span><input id="imageAlt" class="w-full rounded-xl border border-slate-300 px-4 py-3" /></label>
+          <label class="flex items-center gap-3"><input id="featured" type="checkbox" class="h-4 w-4"/><span class="text-sm font-bold">Artigo em destaque</span></label>
+          <label class="flex items-center gap-3"><input id="draft" type="checkbox" checked class="h-4 w-4"/><span class="text-sm font-bold">Salvar como rascunho</span></label>
+        </div>
+
+        <div class="rounded-2xl border border-slate-200 bg-white p-6">
+          <div class="flex flex-wrap items-center justify-between gap-3"><div><h2 class="text-xl font-black text-slate-950">Conteúdo</h2><p class="mt-1 text-sm text-slate-500">Markdown: ## subtítulo, **negrito**, listas e links.</p></div><button id="insert-template" type="button" class="rounded-lg border border-slate-300 px-3 py-2 text-sm font-bold text-slate-700">Inserir estrutura SEO</button></div>
+          <textarea id="content" required rows="28" class="mt-5 w-full rounded-xl border border-slate-300 px-4 py-3 font-mono text-sm leading-7" placeholder="Escreva o artigo aqui..."></textarea>
+        </div>
+
+        <div class="flex flex-wrap gap-3">
+          <button type="submit" class="rounded-xl bg-emerald-900 px-5 py-3 text-sm font-bold text-white">Gerar artigo .md</button>
+          <button id="copy" type="button" class="rounded-xl border border-slate-300 px-5 py-3 text-sm font-bold text-slate-700">Copiar Markdown</button>
+          <button id="save-folder" type="button" class="rounded-xl border border-emerald-800 px-5 py-3 text-sm font-bold text-emerald-900">Salvar em src/content/blog</button>
+        </div>
+        <p id="status" class="text-sm font-semibold text-slate-600" aria-live="polite"></p>
+      </form>
+
+      <aside class="space-y-5 xl:sticky xl:top-24 xl:self-start">
+        <div class="rounded-2xl bg-slate-950 p-6 text-white"><span class="text-xs font-black uppercase tracking-[.15em] text-emerald-400">Checklist SEO</span><ul class="mt-5 space-y-3 text-sm leading-6 text-slate-300"><li>✓ Um H1 é gerado pelo template</li><li>✓ Use H2/H3 no conteúdo</li><li>✓ Inclua a palavra-chave naturalmente</li><li>✓ Crie links para serviços relacionados</li><li>✓ Use fontes oficiais quando necessário</li><li>✓ Evite promessas de aprovação ou resultado</li></ul></div>
+        <div class="rounded-2xl border border-slate-200 p-6"><h2 class="font-black text-slate-950">Publicação e sitemap</h2><p class="mt-3 text-sm leading-6 text-slate-600">Rascunhos não geram página pública. Quando <strong>draft: false</strong>, o Astro cria a rota no build e o plugin de sitemap inclui a URL automaticamente.</p></div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+  const title = $('title');
+  const slug = $('slug');
+  const description = $('description');
+  const status = $('status');
+  const content = $('content');
+  const slugify = (value) => value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  title?.addEventListener('input', () => { if (slug && title) slug.value = slugify(title.value); });
+  description?.addEventListener('input', () => { const el=$('description-count'); if(el) el.textContent=`${description.value.length}/170`; });
+  const today = new Date().toISOString().slice(0,10); if($('publishedAt')) $('publishedAt').value=today;
+
+  function yamlString(value){ return JSON.stringify(String(value || '')); }
+  function markdown(){
+    const keys = $('keywords').value.split(',').map((x)=>x.trim()).filter(Boolean);
+    const related = $('relatedService').value;
+    const image = $('image').value.trim();
+    const imageAlt = $('imageAlt').value.trim();
+    return `---\ntitle: ${yamlString(title.value)}\ndescription: ${yamlString(description.value)}\ncategory: ${yamlString($('category').value)}\nauthor: ${yamlString($('author').value)}\npublishedAt: ${$('publishedAt').value}\ndraft: ${$('draft').checked}\nfeatured: ${$('featured').checked}\nkeywords: [${keys.map(yamlString).join(', ')}]${related ? `\nrelatedService: ${yamlString(related)}` : ''}${image ? `\nimage: ${yamlString(image)}` : ''}${imageAlt ? `\nimageAlt: ${yamlString(imageAlt)}` : ''}\n---\n\n${content.value.trim()}\n`;
+  }
+  function validate(){ if(!title.value || !slug.value || !description.value || !content.value || !$('publishedAt').value){ status.textContent='Preencha os campos obrigatórios.'; return false; } return true; }
+  $('insert-template')?.addEventListener('click',()=>{ if(content.value.trim() && !confirm('Substituir o conteúdo atual pela estrutura sugerida?')) return; content.value=`## O que é\n\nExplique o conceito de forma objetiva.\n\n## Como funciona\n\nDescreva o processo e os pontos técnicos relevantes.\n\n## Quais documentos podem ser necessários\n\n- Documento ou informação 1\n- Documento ou informação 2\n- Documento ou informação 3\n\n## Pontos de atenção\n\nApresente limites, regras e situações que exigem análise individual.\n\n## Como a Mendonça Consultoria Rural pode ajudar\n\nExplique a relação entre o tema e o serviço técnico correspondente, sem prometer aprovação ou resultado.`; });
+  $('cms-form')?.addEventListener('submit',(event)=>{ event.preventDefault(); if(!validate()) return; const blob=new Blob([markdown()],{type:'text/markdown;charset=utf-8'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`${slug.value}.md`; a.click(); URL.revokeObjectURL(a.href); status.textContent=`Arquivo ${slug.value}.md gerado.`; });
+  $('copy')?.addEventListener('click',async()=>{ if(!validate()) return; await navigator.clipboard.writeText(markdown()); status.textContent='Markdown copiado.'; });
+  $('save-folder')?.addEventListener('click',async()=>{ if(!validate()) return; if(!('showDirectoryPicker' in window)){ status.textContent='Seu navegador não permite salvar diretamente em uma pasta. Use “Gerar artigo .md”.'; return; } try { const root=await window.showDirectoryPicker({mode:'readwrite'}); const file=await root.getFileHandle(`${slug.value}.md`,{create:true}); const writable=await file.createWritable(); await writable.write(markdown()); await writable.close(); status.textContent=`Salvo em ${root.name}/${slug.value}.md. Selecione a pasta src/content/blog ao usar este botão.`; } catch(e){ status.textContent='Salvamento cancelado.'; } });
+</script>
